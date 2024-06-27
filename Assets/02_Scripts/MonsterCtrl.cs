@@ -29,13 +29,13 @@ public class MonsterCtrl : MonoBehaviour
         float distance = Vector3.Distance(thisMonster.position, Player.position);
         if(distance <= attackDist)
         {
-            Debug.Log("공격");
+            //Debug.Log("공격");
             animator.SetBool("IsAttack", true);
             agent2.isStopped = true;
         }
         else if(distance <= traceDist)
         {
-            Debug.Log("추적");
+            //Debug.Log("추적");
             animator.SetBool("IsAttack", false);
             animator.SetBool("IsTrace", true);
             agent2.isStopped = false;
@@ -43,7 +43,7 @@ public class MonsterCtrl : MonoBehaviour
         }
         else
         {
-            Debug.Log("추적하지 않음");
+            //Debug.Log("추적하지 않음");
             animator.SetBool("IsTrace", false);
             agent2.isStopped = true;
         }
