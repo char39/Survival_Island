@@ -6,6 +6,7 @@ public class BulletCtrl : MonoBehaviour
 {
     public float Speed = 10f;
     public Rigidbody rb;
+    public int damage = 20;
     void Start()
     {
         rb.AddForce(transform.forward * Speed); //Local 좌표로 Speed만큼 나감.
