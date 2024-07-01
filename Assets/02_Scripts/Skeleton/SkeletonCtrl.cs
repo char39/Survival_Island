@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class SkeletonCtrl : MonoBehaviour
 {
@@ -33,6 +34,11 @@ public class SkeletonCtrl : MonoBehaviour
         {
             animator.SetBool("IsAttack", true);
             agent.isStopped = true;
+
+            Vector3 playerPos = (player.position - transform.position).normalized;
+            Quaternion rot = Quaternion.LookRotation(playerPos);    //FromToRotation은 위에거 정규화 없이 그대로 가능
+                                                                    //상대좌표
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 3.0f);
         }
         else if (distance <= traceDist)
         {

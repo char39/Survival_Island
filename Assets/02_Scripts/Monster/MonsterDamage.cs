@@ -10,6 +10,8 @@ public class MonsterDamage : MonoBehaviour
     public CapsuleCollider capCol;
     public Animator animator;
     public GameObject bloodEffect;
+    public BoxCollider boxCol;
+    public MeshRenderer meshRenderer;
     [Header("Vars")]
     public string playerTag = "Player";
     public string bulletTag = "BULLET";
@@ -31,7 +33,16 @@ public class MonsterDamage : MonoBehaviour
         hpInit = maxHp;
         hpBar.color = Color.green;
     }
-
+    public void BoxColEnable()
+    {
+        boxCol.enabled = true;
+        meshRenderer.enabled = true;
+    }
+    public void BoxColDisable()
+    {
+        boxCol.enabled = false;
+        meshRenderer.enabled = false;
+    }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag(playerTag))
@@ -48,7 +59,6 @@ public class MonsterDamage : MonoBehaviour
                 MonsterDie();
         }
     }
-
     private void HitInfo(Collision col)
     {
         Destroy(col.gameObject);
@@ -64,7 +74,6 @@ public class MonsterDamage : MonoBehaviour
         var blood = Instantiate(bloodEffect, hitPos, hitRot);
         Destroy(blood, Random.Range(0.8f, 1.2f));
     }
-
     private void OnCollisionExit(Collision col)
     {
         if (col.gameObject.CompareTag(playerTag))
@@ -72,15 +81,14 @@ public class MonsterDamage : MonoBehaviour
             rb.mass = 75f;
         }
     }
-
     public void MonsterDie()
     {
         animator.SetTrigger(dieStr);
         capCol.enabled = false;
         rb.isKinematic = true;
         IsDie = true;
+        Destroy(gameObject, 5.0f);
     }
-
     void Update()
     {
         if (hpBar.fillAmount <= 0.3f)

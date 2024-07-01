@@ -6,6 +6,9 @@ TagManager:
   tags:
   - BULLET
   - ZOMBIE
+  - MONSTER
+  - SKELETON
+  - ATTACK_HITBOX
   layers:
   - Default
   - TransparentFX

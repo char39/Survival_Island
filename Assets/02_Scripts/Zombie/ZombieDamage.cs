@@ -10,6 +10,8 @@ public class ZombieDamage : MonoBehaviour
     public CapsuleCollider capCol;
     public Animator animator;
     public GameObject bloodEffect;      // 너무 빈번하게 실행시킬거면 파티클로 직접 쓰는게 나음
+    public BoxCollider boxCol;
+    public MeshRenderer meshRenderer;
     [Header("Vars")]
     public string playerTag = "Player";
     public string bulletTag = "BULLET";
@@ -31,7 +33,16 @@ public class ZombieDamage : MonoBehaviour
         hpInit = maxHp;
         hpBar.color = Color.green;
     }
-    
+    public void BoxColEnable()
+    {
+        boxCol.enabled = true;
+        meshRenderer.enabled = true;
+    }
+    public void BoxColDisable()
+    {
+        boxCol.enabled = false;
+        meshRenderer.enabled = false;
+    }
     private void OnCollisionEnter(Collision col)
     {
         // col.gameObject.tag == "Player"            < 동적할당 + 비교    속도가 느림
@@ -52,7 +63,6 @@ public class ZombieDamage : MonoBehaviour
                 ZombieDie();
         }
     }
-
     private void HitInfo(Collision col)
     {
         Destroy(col.gameObject);    //총알 제거
@@ -64,6 +74,7 @@ public class ZombieDamage : MonoBehaviour
 
         //Quaternion hitRot = Quaternion.Euler(0, 90, 0);                                       //기존 방향
         //Quaternion hitRot = Quaternion.FromToRotation(-Vector3.forward, hitPos.normalized);    //기존 방향2
+                                                        //절대좌표
         Quaternion hitRot = Quaternion.LookRotation(-(col.contacts[0].normal));                 //수정 방향
 
 
@@ -75,7 +86,6 @@ public class ZombieDamage : MonoBehaviour
 
         Destroy(blood, Random.Range(0.8f, 1.2f));
     }
-
     private void OnCollisionExit(Collision col)
     {
         if (col.gameObject.CompareTag(playerTag))
@@ -84,8 +94,6 @@ public class ZombieDamage : MonoBehaviour
             //rb.freezeRotation = true;
         }
     }
-    
-
     void ZombieDie()
     {
         animator.SetTrigger(dieStr);

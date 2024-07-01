@@ -35,6 +35,10 @@ public class MonsterCtrl : MonoBehaviour
             //Debug.Log("공격");
             animator.SetBool("IsAttack", true);
             agent2.isStopped = true;
+            Vector3 PlayerPos = Player.position - transform.position;
+            PlayerPos = PlayerPos.normalized;
+            Quaternion rot = Quaternion.LookRotation(PlayerPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 3.0f);
         }
         else if(distance <= traceDist)
         {

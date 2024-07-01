@@ -46,6 +46,10 @@ public class ZombieCtrl : MonoBehaviour
             //Debug.Log("공격");
             animator.SetBool("IsAttack", true);
             agent.isStopped = true;
+            Quaternion rot = Quaternion.LookRotation(Player.position - thisZombie.position);
+            thisZombie.rotation = Quaternion.Slerp(thisZombie.rotation, rot, Time.deltaTime * 3.0f);
+                        //Slerp 부드럽게 곡면(원형방향으로) 보간하는 함수
+                        //Quaternion.Slerp(자기자신 로테이션에서, 플레이어 방향으로, 주어진시간만큼)
         }
         else if (distance <= traceDist)
         {

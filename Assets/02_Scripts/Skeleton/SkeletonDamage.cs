@@ -10,6 +10,8 @@ public class SkeletonDamage : MonoBehaviour
     public CapsuleCollider capCol;
     public Animator animator;
     public GameObject bloodEffect;
+    public BoxCollider boxCol;
+    public MeshRenderer meshRenderer;
     [Header("Vars")]
     public string playerTag = "Player";
     public string bulletTag = "BULLET";
@@ -32,6 +34,16 @@ public class SkeletonDamage : MonoBehaviour
         hpBar.color = Color.green;
         firectrl = GameObject.FindWithTag("Player").GetComponent<FireCtrl>();
     }
+    public void BoxColEnable()
+    {
+        boxCol.enabled = true;
+        meshRenderer.enabled = true;
+    }
+    public void BoxColDisable()
+    {
+        boxCol.enabled = false;
+        meshRenderer.enabled = false;
+    }
 
     public void OnCollisionEnter(Collision col)
     {
@@ -47,15 +59,14 @@ public class SkeletonDamage : MonoBehaviour
             }
         }
     }
-
     public void SkeletonDie()
     {
         animator.SetTrigger(dieStr);
         capCol.enabled = false;
         rb.isKinematic = true;
         IsDie = true;
+        Destroy(gameObject, 5.0f);
     }
-
     public void HitInfo(Collision col)
     {
         Destroy(col.gameObject);
@@ -75,7 +86,6 @@ public class SkeletonDamage : MonoBehaviour
         var blood = Instantiate(bloodEffect, hitPos, hitRot); 
         Destroy(blood, Random.Range(0.8f, 1.2f));
     }
-
     void Update()
     {
         if (hpBar.fillAmount <= 0.3f)
