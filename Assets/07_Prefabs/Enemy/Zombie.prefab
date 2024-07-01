@@ -1161,7 +1161,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6338474905751094459}
+      addedObject: {fileID: 7957943986771412840}
     - targetCorrespondingSourceObject: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8024552507368954650}
@@ -1173,7 +1173,7 @@ PrefabInstance:
       addedObject: {fileID: 135032482238356217}
     - targetCorrespondingSourceObject: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 970244545912158169}
+      addedObject: {fileID: 6548079077835579616}
   m_SourcePrefab: {fileID: 100100000, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
 --- !u!4 &577869556192297116 stripped
 Transform:
@@ -1185,7 +1185,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100088, guid: 8141a1e3f5562ba4d910d6c02d5d213c, type: 3}
   m_PrefabInstance: {fileID: 577869556192434756}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6338474905751094459
+--- !u!114 &7957943986771412840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 577869556192468156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75274eda5a9964647805c120ca193df5, type: 3}
+  m_Script: {fileID: 11500000, guid: fcd4b90521371bc4ab0b46a2a9ec2521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
@@ -1276,7 +1276,7 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1.15, z: 0}
---- !u!114 &970244545912158169
+--- !u!114 &6548079077835579616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1285,13 +1285,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 577869556192468156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb1f05d0ba5b7f4b866fdba25d40532, type: 3}
+  m_Script: {fileID: 11500000, guid: cb75730779997a64ebc07c9383f4c535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   capCol: {fileID: 0}
   animator: {fileID: 0}
-  bloodEffect: {fileID: 1240250018707908, guid: 72dc7c6e9068b6f42b1555dfc96cef85, type: 3}
+  bloodEffect: {fileID: 1240250018707908, guid: 5656e7ea1f1a75d4c895547ec2b824b3, type: 3}
   boxCol: {fileID: 3196879456532067127}
   meshRenderer: {fileID: 5717192660186578972}
   playerTag: Player
