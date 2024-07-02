@@ -9,6 +9,7 @@ TagManager:
   - MONSTER
   - SKELETON
   - ATTACK_HITBOX
+  - ENEMY
   layers:
   - Default
   - TransparentFX

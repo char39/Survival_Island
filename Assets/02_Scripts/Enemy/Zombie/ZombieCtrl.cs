@@ -31,7 +31,6 @@ public class ZombieCtrl : MonoBehaviour
             //transform은 항상 있으니까 괜찮은것.
         animator = GetComponent<Animator>();
         damage = GetComponent<ZombieDamage>();
-        
     }
 
     void Update()

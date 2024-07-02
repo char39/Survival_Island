@@ -1,6 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
+
+//싱글톤 기법
+//게임매니저는 게임 전체를 컨트롤 해야 하므로 접근이 쉬워야 한다.
+//static 변수를 만든 후 이 변수가 대표해서 게임매니저에 접근하게 한다.
+//무분별한 객체 생성을 막고 하나만 생성되게 하는 기법.
 
 //Enemy가 생성되는 로직, 게임 전체를 관리하는 클래스
 
@@ -8,6 +15,45 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    public GameObject[] EnemyPrefabs;
+    public Transform[] Points;
+    private float timePreV;
+    public int maxCount = 10;
+    string enemyTag = "ENEMY";
+    public Text killText;
+    public int killCount = 0;
+    void Start()
+    {
+        Instance = this;
+        //객체 생성. 게임매니저의 public이라고 선언된 변수나 메서드는 다른 스크립트에서 접근 가능
+        Points = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>();
+    }
+    void Update()
+    {
+        EnemySpawn();
+    }
+
+    void EnemySpawn()
+    {
+        timePreV += Time.deltaTime;
+        int enemyCount = GameObject.FindGameObjectsWithTag(enemyTag).Length;
+        if ((timePreV >= 3.0f) && (enemyCount < maxCount))
+        {
+            int pos = Random.Range(1, Points.Length);
+            int i = Random.Range(0, EnemyPrefabs.Length);
+            Instantiate(EnemyPrefabs[i], Points[pos].position, Points[pos].rotation);
+            timePreV = Time.deltaTime;
+        }
+    }
+
+    public void KillScore(int score)
+    {
+        killCount += score;
+        killText.text = $"Kill : <color=#FFAAAA>{killCount.ToString()}</color>";
+    }
+
+    /*
     public GameObject zombiePrefab;
     public GameObject monsterPrefab;
     public GameObject skeletonPrefab;
@@ -86,5 +132,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    */
 }
 

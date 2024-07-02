@@ -101,6 +101,7 @@ public class ZombieDamage : MonoBehaviour
         rb.isKinematic = true;      //물리기능 true일때 일시 제거
         IsDie = true;
         Destroy(gameObject, 5.0f);
+        GameManager.Instance.KillScore(1);
     }
     void Update()
     {

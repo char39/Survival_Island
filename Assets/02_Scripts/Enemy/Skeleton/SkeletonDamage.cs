@@ -66,6 +66,7 @@ public class SkeletonDamage : MonoBehaviour
         rb.isKinematic = true;
         IsDie = true;
         Destroy(gameObject, 5.0f);
+        GameManager.Instance.KillScore(1);
     }
     public void HitInfo(Collision col)
     {

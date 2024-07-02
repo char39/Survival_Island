@@ -88,6 +88,7 @@ public class MonsterDamage : MonoBehaviour
         rb.isKinematic = true;
         IsDie = true;
         Destroy(gameObject, 5.0f);
+        GameManager.Instance.KillScore(1);
     }
     void Update()
     {
