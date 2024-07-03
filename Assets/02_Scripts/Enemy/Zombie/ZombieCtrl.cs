@@ -35,7 +35,8 @@ public class ZombieCtrl : MonoBehaviour
 
     void Update()
     {
-        if (damage.IsDie) return;   //update 함수 바로 null을 반환하고 끝냄. 다만 무한 반복이라 다음엔 이렇게 짜면 안됨.
+        if (damage.IsDie || Player.GetComponent<FpsDamage>().isPlayerDie)
+            return;   //update 함수 바로 null을 반환하고 끝냄. 다만 무한 반복이라 다음엔 이렇게 짜면 안됨.
             // 거리를 잰다.
             //player이랑 thisZombie를 transform으로 잡았기에 position으로 거리를잼.
             //gameobject로 잡으면 transform으로 거리를 잼
@@ -65,5 +66,9 @@ public class ZombieCtrl : MonoBehaviour
             agent.isStopped = true;
         }
 
+    }
+    public void PlayerDeath()
+    {
+        GetComponent<Animator>().SetTrigger("PlayerDie");
     }
 }

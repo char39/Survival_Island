@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int maxCount = 10;
     string enemyTag = "ENEMY";
     public Text killText;
-    public int killCount = 0;
+    public static int killCount = 0;
     void Start()
     {
         Instance = this;

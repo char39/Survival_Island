@@ -32,7 +32,8 @@ public class SkeletonCtrl : MonoBehaviour
 
     void Update()
     {
-        if (damage.IsDie) return;
+        if (damage.IsDie || player.GetComponent<FpsDamage>().isPlayerDie)
+            return;
         float distance = Vector3.Distance(thisSkeleton.position, player.position);
         if (distance <= attackDist)
         {
@@ -61,5 +62,9 @@ public class SkeletonCtrl : MonoBehaviour
     {
         audioSource.clip = swordclip;   //사운드 클립을 받아서 아래에서 1회 재생
         audioSource.PlayDelayed(0.1f);  //0.1초 딜레이 후 재생
+    }
+    public void PlayerDeath()
+    {
+        GetComponent<Animator>().SetTrigger("PlayerDie");
     }
 }

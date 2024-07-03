@@ -28,7 +28,8 @@ public class MonsterCtrl : MonoBehaviour
 
     void Update()
     {
-        if (damage.IsDie) return;
+        if (damage.IsDie || Player.GetComponent<FpsDamage>().isPlayerDie)
+            return;
         float distance = Vector3.Distance(thisMonster.position, Player.position);
         if(distance <= attackDist)
         {
@@ -54,5 +55,9 @@ public class MonsterCtrl : MonoBehaviour
             animator.SetBool("IsTrace", false);
             agent2.isStopped = true;
         }
+    }
+    public void PlayerDeath()
+    {
+        GetComponent<Animator>().SetTrigger("PlayerDie");
     }
 }

@@ -22,6 +22,7 @@ public class LightOnOff : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             StairLight.enabled = true; // Collider 구조체에 Player Tag를 가진 오브젝트가 충돌 판정시, 이 변수가 실행.
+            Source.PlayOneShot(Clip);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -29,7 +30,6 @@ public class LightOnOff : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             StairLight.enabled = false; // Collider 구조체에 Player Tag를 가진 오브젝트가 충돌 판정이 사라질시, 이 변수가 실행.
-            
         }
     }
 
