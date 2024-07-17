@@ -48,9 +48,6 @@ public class FireCtrl : MonoBehaviour
     void Fire()     //총알 발사 함수
     {
         BulletCount++;
-        //오브젝트 생성 함수
-        //          무엇을         어디에             어떤 rotation 으로
-        Instantiate(bulletPrefab, firePos.position, firePos.rotation);
         Source.PlayOneShot(fireClip, 1.0f);
         fireAni.Play("fire");
         muzzleFlash.Play();
@@ -59,7 +56,13 @@ public class FireCtrl : MonoBehaviour
             // Start Co Routine : 게임 중 개발자가 원하는 프레임을
             //                    만드려고 할 때 사용
             StartCoroutine(Reload());   // Reload() 호출
-
+        }
+        var bullets = ObjPooling_Manager.instance.GetBulletPool();
+        if (bullets != null)
+        {
+            bullets.transform.position = firePos.position;
+            bullets.transform.rotation = firePos.rotation;
+            bullets.SetActive(true);
         }
     }
     IEnumerator Reload()

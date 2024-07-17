@@ -70,7 +70,8 @@ public class SkeletonDamage : MonoBehaviour
     }
     public void HitInfo(Collision col)
     {
-        Destroy(col.gameObject);
+        //Destroy(col.gameObject);
+        col.gameObject.SetActive(false);
         animator.SetTrigger(hitStr);
 
         Vector3 hitPos = col.transform.position;          //기존 위치

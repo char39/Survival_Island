@@ -179,8 +179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e594da1e0acfc349ae1b46473ecba30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trail: {fileID: 7757919205163092336}
   Speed: 1500
   rb: {fileID: 6424196314012594207}
+  damage: 20
 --- !u!54 &6424196314012594207
 Rigidbody:
   m_ObjectHideFlags: 0

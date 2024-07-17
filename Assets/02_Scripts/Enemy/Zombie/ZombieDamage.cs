@@ -65,7 +65,8 @@ public class ZombieDamage : MonoBehaviour
     }
     private void HitInfo(Collision col)
     {
-        Destroy(col.gameObject);    //총알 제거
+        //Destroy(col.gameObject);    //총알 제거
+        col.gameObject.SetActive(false);    //총알 제거
                                     //print("맞았나?");
         animator.SetTrigger(hitStr);
 

@@ -25,7 +25,8 @@ public class ContainerSpark : MonoBehaviour
             ////                      무엇을         어디에[충돌위치]       회전없이 생성
             //Destroy(spark, 2.0f);
 
-            Destroy(col.gameObject);
+            //Destroy(col.gameObject);
+            col.gameObject.SetActive(false);
             source.PlayOneShot(SparkClip, 1.0f);
 
             Vector3 hitPos = col.transform.position;
