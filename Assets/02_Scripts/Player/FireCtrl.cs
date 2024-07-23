@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireCtrl : MonoBehaviour
 {
@@ -11,10 +12,14 @@ public class FireCtrl : MonoBehaviour
     public AudioSource Source;
     public AudioClip fireClip;
     public ParticleSystem muzzleFlash;  //가져온 이펙트 이름을 변수 이름으로 한것
+    [SerializeField]private Image bulletUIimage;
+    [SerializeField]private Text bulletUItext;
+
     [Header("Variations")]
     public float fireTime;
     public HandCtrl handCtrl;
-    public int BulletCount = 0;
+    private int BulletCount = 0;
+    private int maxBulletCount = 10;
     public bool isReload = false;
     void Start()
     {
@@ -22,6 +27,10 @@ public class FireCtrl : MonoBehaviour
         fireTime = Time.time;
         //현재 시간을 대입
         muzzleFlash.Stop();
+        BulletCount = maxBulletCount;
+        bulletUIimage = GameObject.Find("Canvas_UI").transform.GetChild(6).GetChild(1).GetComponent<Image>();
+        bulletUItext = GameObject.Find("Canvas_UI").transform.GetChild(6).GetChild(2).GetComponent<Text>();
+        UpdateBulletCountUI();
     }
 
     void Update()
@@ -47,11 +56,12 @@ public class FireCtrl : MonoBehaviour
 
     void Fire()     //총알 발사 함수
     {
-        BulletCount++;
+        BulletCount--;
         Source.PlayOneShot(fireClip, 1.0f);
         fireAni.Play("fire");
         muzzleFlash.Play();
-        if(BulletCount >= 10)
+        UpdateBulletCountUI();
+        if(BulletCount <= 0)
         {
             // Start Co Routine : 게임 중 개발자가 원하는 프레임을
             //                    만드려고 할 때 사용
@@ -71,7 +81,13 @@ public class FireCtrl : MonoBehaviour
         yield return new WaitForSeconds(0.2f);  // 0.2초 대기
         fireAni.Play("pump3");                  // Reload 애니메이션 재생
         yield return new WaitForSeconds(0.7f);    // n초 대기
-        BulletCount = 0;
+        BulletCount = maxBulletCount;
+        UpdateBulletCountUI();
         isReload = false;
+    }
+    void UpdateBulletCountUI()
+    {
+        bulletUIimage.fillAmount = (float)BulletCount / (float)maxBulletCount;
+        bulletUItext.text = string.Format($"<color=#FFAAAA>{BulletCount}</color> / {maxBulletCount}");
     }
 }
