@@ -23,18 +23,23 @@ public class GameManager : MonoBehaviour
     string enemyTag = "ENEMY";
     public Text killText;
     public static int killCount = 0;
+    public static bool isOpened = false;
+    public CanvasGroup canvasGroup;
 
     void Start()
     {
         Instance = this;
         //객체 생성. 게임매니저의 public이라고 선언된 변수나 메서드는 다른 스크립트에서 접근 가능
         Points = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>();
+        canvasGroup = GameObject.Find("Inventory").GetComponent<CanvasGroup>();
     }
     void Update()
     {
         EnemySpawn();
         if (Input.GetKeyDown(KeyCode.Escape))
             GamePause();
+        if (Input.GetKeyDown(KeyCode.I))
+            InventoryOnOff();
     }
 
     public bool isPaused = false;
@@ -48,6 +53,31 @@ public class GameManager : MonoBehaviour
         foreach (var script in scripts)
             script.enabled = !isPaused;
     }
+
+    public void InventoryOnOff()
+    {
+        isOpened = !isOpened;
+        InventoryUpdate();
+    }
+
+    public void InventoryUpdate()
+    {
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        var scripts = playerObj.GetComponents<MonoBehaviour>();         // Player에게 있는 모든 스크립트들을 Get.
+        foreach (var script in scripts)
+            script.enabled = !isOpened;
+
+        if (Cursor.lockState == CursorLockMode.Locked)
+            Cursor.lockState = CursorLockMode.None;
+        else
+            Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = !Cursor.visible ? true : false;
+
+        canvasGroup.alpha = isOpened ? 1.0f : 0.0f;
+        canvasGroup.interactable = isOpened ? true : false;
+        canvasGroup.blocksRaycasts = isOpened ? true : false;
+    }
+
 
     void EnemySpawn()
     {

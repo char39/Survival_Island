@@ -33,7 +33,7 @@ public class FireCtrl : MonoBehaviour
         UpdateBulletCountUI();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         #region 단발
         ////마우스 왼쪽 버튼 눌림시 1회 실행.      0은 왼쪽클, 1은 우측클, 2는 휠버튼클
