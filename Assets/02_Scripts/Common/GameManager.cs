@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     string enemyTag = "ENEMY";
     public Text killText;
     public static int killCount = 0;
+
     void Start()
     {
         Instance = this;
@@ -32,6 +33,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         EnemySpawn();
+        if (Input.GetKeyDown(KeyCode.Escape))
+            GamePause();
+    }
+
+    public bool isPaused = false;
+
+    public void GamePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0.0f : 1.0f;
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        var scripts = playerObj.GetComponents<MonoBehaviour>();
+        foreach (var script in scripts)
+            script.enabled = !isPaused;
     }
 
     void EnemySpawn()
