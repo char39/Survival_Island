@@ -9,10 +9,17 @@ public class ObjPooling_Manager : MonoBehaviour
     public int maxBulletPool = 10;
     public List<GameObject> bulletPoolList;
 
+    public GameObject[] EnemyPrefabs;
+    private int maxEnemyPool = 10;
+    public List<GameObject> enemyPoolList;
+
+
     void Awake()
     {
         instance = this;
+
         CreateBulletPool();
+        CreateEnemyPool();
     }
 
     void CreateBulletPool()
@@ -37,4 +44,32 @@ public class ObjPooling_Manager : MonoBehaviour
         }
         return null;
     }
+
+    void CreateEnemyPool()
+    {
+        GameObject EnemyGroup = new GameObject("EnemyGroup");
+        for (int i = 0; i < maxEnemyPool; i++)
+        {
+            var enemy = Instantiate(EnemyPrefabs[Random.Range(0, 2)], EnemyGroup.transform);
+            enemy.name = $"enemy_{i+1}";
+            enemy.SetActive(false);
+            enemyPoolList.Add(enemy);
+        }
+    }
+    public GameObject GetEnemyPool()
+    {
+        for (int i = 0; i < enemyPoolList.Count; i++)
+        {
+            if (!enemyPoolList[i].activeSelf)
+            {
+                return enemyPoolList[i];
+            }
+        }
+        return null;
+    }
+
+
+
+
+
 }

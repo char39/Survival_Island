@@ -88,7 +88,8 @@ public class MonsterDamage : MonoBehaviour
         capCol.enabled = false;
         rb.isKinematic = true;
         IsDie = true;
-        Destroy(gameObject, 5.0f);
+        //Destroy(gameObject, 5.0f);
+        GetComponent<EnemyOnDisable>().Disable();
         GameManager.Instance.KillScore(1);
     }
     void Update()

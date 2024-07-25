@@ -1598,6 +1598,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8779721220767531614, guid: 3a17bb118c4dbc74da1004161df0b171, type: 3}
   maxBulletPool: 10
   bulletPoolList: []
+  EnemyPrefabs:
+  - {fileID: 577869556192468156, guid: 18e4bef85751c6541afd7bec46c56338, type: 3}
+  - {fileID: 6141335779995469753, guid: 9ebbb44267380b2438744bcdedea20ac, type: 3}
+  - {fileID: 4693411413228577717, guid: d0718e751ebc6e44c8f2c817dd982852, type: 3}
+  Points: []
+  enemyPoolList: []
 --- !u!4 &444093775
 Transform:
   m_ObjectHideFlags: 0
@@ -6301,14 +6307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca21361388751b49b59427ac327f3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefabs:
-  - {fileID: 577869556192468156, guid: 18e4bef85751c6541afd7bec46c56338, type: 3}
-  - {fileID: 6141335779995469753, guid: 9ebbb44267380b2438744bcdedea20ac, type: 3}
-  - {fileID: 4693411413228577717, guid: d0718e751ebc6e44c8f2c817dd982852, type: 3}
-  Points: []
-  maxCount: 10
   killText: {fileID: 1270981790}
-  isOpened: 0
   canvasGroup: {fileID: 0}
   isPaused: 0
 --- !u!4 &1738853688

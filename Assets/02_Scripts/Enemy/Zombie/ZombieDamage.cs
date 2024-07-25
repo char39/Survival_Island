@@ -101,7 +101,8 @@ public class ZombieDamage : MonoBehaviour
         capCol.enabled = false;     //콜라이더[충돌감지 기능] 비활성화
         rb.isKinematic = true;      //물리기능 true일때 일시 제거
         IsDie = true;
-        Destroy(gameObject, 5.0f);
+        //Destroy(gameObject, 5.0f);
+        GetComponent<EnemyOnDisable>().Disable();
         GameManager.Instance.KillScore(1);
     }
     void Update()

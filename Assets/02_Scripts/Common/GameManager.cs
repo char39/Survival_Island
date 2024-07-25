@@ -16,11 +16,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject[] EnemyPrefabs;
+    //public GameObject[] EnemyPrefabs;
     public Transform[] Points;
     private float timePreV;
-    public int maxCount = 10;
-    string enemyTag = "ENEMY";
+    //public int maxCount = 10;
+    //string enemyTag = "ENEMY";
     public Text killText;
     public static int killCount = 0;
     public static bool isOpened = false;
@@ -30,8 +30,9 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         //객체 생성. 게임매니저의 public이라고 선언된 변수나 메서드는 다른 스크립트에서 접근 가능
-        Points = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>();
+        //Points = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>();
         canvasGroup = GameObject.Find("Inventory").GetComponent<CanvasGroup>();
+        Points = GameObject.Find("SpawnPoints").GetComponentsInChildren<Transform>();
     }
     void Update()
     {
@@ -82,14 +83,19 @@ public class GameManager : MonoBehaviour
     void EnemySpawn()
     {
         timePreV += Time.deltaTime;
-        int enemyCount = GameObject.FindGameObjectsWithTag(enemyTag).Length;
-        if ((timePreV >= 3.0f) && (enemyCount < maxCount))
+        if (timePreV >= 3.0f)
         {
-            int pos = Random.Range(1, Points.Length);
-            int i = Random.Range(0, EnemyPrefabs.Length);
-            Instantiate(EnemyPrefabs[i], Points[pos].position, Points[pos].rotation);
+            Debug.Log("스폰");
+            var enemy = ObjPooling_Manager.instance.GetEnemyPool();
+            if (enemy != null)
+            {
+                int pos = Random.Range(1, Points.Length);
+                enemy.transform.position = Points[pos].position;
+                enemy.SetActive(true);
+            }
             timePreV = Time.deltaTime;
         }
+        
     }
 
     public void KillScore(int score)

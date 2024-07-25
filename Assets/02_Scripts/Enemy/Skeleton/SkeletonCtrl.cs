@@ -30,6 +30,16 @@ public class SkeletonCtrl : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    void OnEnable()
+    {
+        agent = this.gameObject.GetComponent<NavMeshAgent>();
+        thisSkeleton = transform;
+        player = GameObject.FindWithTag(findTag).transform;
+        animator = GetComponent<Animator>();
+        damage = GetComponent<SkeletonDamage>();
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (damage.IsDie || player.GetComponent<FpsDamage>().isPlayerDie)
