@@ -60,7 +60,7 @@ public class SkeletonDamage : MonoBehaviour
         {
             HitInfo(col);
             hpInit -= col.gameObject.GetComponent<BulletCtrl>().damage;
-            hpBar.fillAmount = (float)hpInit / (float)maxHp;
+            UIUpdate();
             hpText.text = $"HP : <color=#FF0000>{hpInit}</color>";
             if (hpInit <= 0)
             {
@@ -68,6 +68,14 @@ public class SkeletonDamage : MonoBehaviour
             }
         }
     }
+
+    public void UIUpdate()
+    {
+        hpInit = Mathf.Clamp(hpInit, 0, maxHp);
+        hpBar.fillAmount = (float)hpInit / (float)maxHp;
+        hpText.text = $"HP : <color=#FF0000>{hpInit.ToString()}</color>"; //tostring 안해도 크게 문제는 없음.
+    }
+
     public void SkeletonDie()
     {
         animator.SetTrigger(dieStr);

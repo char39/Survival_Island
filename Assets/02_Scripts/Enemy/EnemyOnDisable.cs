@@ -8,7 +8,20 @@ public class EnemyOnDisable : MonoBehaviour
 
     void OnEnable() // 켜질 때
     {
+        if (gameObject.TryGetComponent<SkeletonDamage>(out var skeletonDamage))
+        {
+            skeletonDamage.hpInit = skeletonDamage.maxHp;
+        }
 
+        if (gameObject.TryGetComponent<MonsterDamage>(out var monsterDamage))
+        {
+            monsterDamage.hpInit = monsterDamage.maxHp;
+        }
+    
+        if (gameObject.TryGetComponent<ZombieDamage>(out var zombieDamage))
+        {
+            zombieDamage.hpInit = zombieDamage.maxHp;
+        }
     }
 
     void OnDisable()// 꺼질 때
@@ -21,10 +34,8 @@ public class EnemyOnDisable : MonoBehaviour
         Invoke("StartDisable", 5.0f);        
     }
 
-    void StartDisable()
+    public void StartDisable()
     {
-        gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
-
         if (gameObject.TryGetComponent<SkeletonDamage>(out var skeletonDamage))
         {
             skeletonDamage.IsDie = false;
@@ -32,6 +43,7 @@ public class EnemyOnDisable : MonoBehaviour
             skeletonDamage.rb.isKinematic = false;
             skeletonDamage.rb.Sleep();
             skeletonDamage.rb.velocity = Vector3.zero;
+            skeletonDamage.gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
         }
 
         if (gameObject.TryGetComponent<MonsterDamage>(out var monsterDamage))
@@ -41,6 +53,7 @@ public class EnemyOnDisable : MonoBehaviour
             monsterDamage.rb.isKinematic = false;
             monsterDamage.rb.Sleep();
             monsterDamage.rb.velocity = Vector3.zero;
+            monsterDamage.gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
         }
     
         if (gameObject.TryGetComponent<ZombieDamage>(out var zombieDamage))
@@ -50,6 +63,7 @@ public class EnemyOnDisable : MonoBehaviour
             zombieDamage.rb.isKinematic = false;
             zombieDamage.rb.Sleep();
             zombieDamage.rb.velocity = Vector3.zero;
+            zombieDamage.gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
         }
 
         gameObject.SetActive(false);
