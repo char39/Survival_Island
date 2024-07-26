@@ -50,7 +50,7 @@ public class ObjPooling_Manager : MonoBehaviour
         GameObject EnemyGroup = new GameObject("EnemyGroup");
         for (int i = 0; i < maxEnemyPool; i++)
         {
-            var enemy = Instantiate(EnemyPrefabs[Random.Range(0, 2)], EnemyGroup.transform);
+            var enemy = Instantiate(EnemyPrefabs[Random.Range(0, 3)], EnemyGroup.transform);
             enemy.name = $"enemy_{i+1}";
             enemy.SetActive(false);
             enemyPoolList.Add(enemy);

@@ -42,13 +42,13 @@ public class FireCtrl : MonoBehaviour
         #endregion
         #region 연발
         //현재 시간에서 과거 시간을 빼서 0.1초 이상일때, 발사 후 firetime을 현재 시간에 대입
-        if ((Input.GetMouseButton(0)) && (Time.time - fireTime > 0.1f) && (!handCtrl.isRun) && (!isReload))
+        if (Input.GetMouseButton(0) && (Time.time - fireTime > 0.1f) && (!handCtrl.isRun) && (!isReload))
         {
             Fire();
             fireTime = Time.time;
         }
         #endregion
-        if (Input.GetMouseButtonUp(0) || (handCtrl.isRun) || (isReload)) //대신 Invoke(,)를 써도됨 [일정 간격마다 실행]
+        if (!Input.GetMouseButton(0) || (handCtrl.isRun) || (isReload)) //대신 Invoke(,)를 써도됨 [일정 간격마다 실행]
         {
             muzzleFlash.Stop();
         }

@@ -33,6 +33,10 @@ public class ZombieDamage : MonoBehaviour
         hpInit = maxHp;
         hpBar.color = Color.green;
     }
+    void OnEnable()
+    {
+        UIUpdate();
+    }
     public void BoxColEnable()
     {
         boxCol.enabled = true;
@@ -109,7 +113,7 @@ public class ZombieDamage : MonoBehaviour
         rb.isKinematic = true;      //물리기능 true일때 일시 제거
         IsDie = true;
         //Destroy(gameObject, 5.0f);
-        GetComponent<EnemyOnDisable>().Disable();
+        GetComponent<EnemyOnDisable>().DisableTime();
         GameManager.Instance.KillScore(1);
     }
     void Update()

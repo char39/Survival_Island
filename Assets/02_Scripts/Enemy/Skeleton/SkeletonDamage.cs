@@ -36,11 +36,7 @@ public class SkeletonDamage : MonoBehaviour
 
     void OnEnable()
     {
-        rb = GetComponent<Rigidbody>();
-        capCol = GetComponent<CapsuleCollider>();
-        animator = GetComponent<Animator>();
-        hpInit = maxHp;
-        firectrl = GameObject.FindWithTag("Player").GetComponent<FireCtrl>();
+        UIUpdate();
     }
 
     public void BoxColEnable()
@@ -83,7 +79,7 @@ public class SkeletonDamage : MonoBehaviour
         rb.isKinematic = true;
         IsDie = true;
         //Destroy(gameObject, 5.0f);
-        GetComponent<EnemyOnDisable>().Disable();
+        GetComponent<EnemyOnDisable>().DisableTime();
         GameManager.Instance.KillScore(1);
     }
     public void HitInfo(Collision col)

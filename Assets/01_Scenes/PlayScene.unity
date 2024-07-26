@@ -555,7 +555,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &120658128
 Transform:
   m_ObjectHideFlags: 0
@@ -1602,7 +1602,6 @@ MonoBehaviour:
   - {fileID: 577869556192468156, guid: 18e4bef85751c6541afd7bec46c56338, type: 3}
   - {fileID: 6141335779995469753, guid: 9ebbb44267380b2438744bcdedea20ac, type: 3}
   - {fileID: 4693411413228577717, guid: d0718e751ebc6e44c8f2c817dd982852, type: 3}
-  Points: []
   enemyPoolList: []
 --- !u!4 &444093775
 Transform:
@@ -5917,7 +5916,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1398608590
 Transform:
   m_ObjectHideFlags: 0
@@ -6169,7 +6168,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1626693526
 Transform:
   m_ObjectHideFlags: 0
@@ -6307,8 +6306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca21361388751b49b59427ac327f3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killText: {fileID: 1270981790}
+  Points: []
   canvasGroup: {fileID: 0}
+  killText: {fileID: 1270981790}
   isPaused: 0
 --- !u!4 &1738853688
 Transform:

@@ -8,20 +8,7 @@ public class EnemyOnDisable : MonoBehaviour
 
     void OnEnable() // 켜질 때
     {
-        if (gameObject.TryGetComponent<SkeletonDamage>(out var skeletonDamage))
-        {
-            skeletonDamage.hpInit = skeletonDamage.maxHp;
-        }
 
-        if (gameObject.TryGetComponent<MonsterDamage>(out var monsterDamage))
-        {
-            monsterDamage.hpInit = monsterDamage.maxHp;
-        }
-    
-        if (gameObject.TryGetComponent<ZombieDamage>(out var zombieDamage))
-        {
-            zombieDamage.hpInit = zombieDamage.maxHp;
-        }
     }
 
     void OnDisable()// 꺼질 때
@@ -29,7 +16,7 @@ public class EnemyOnDisable : MonoBehaviour
         StartDisable();
     }
 
-    public void Disable()  // 호출을 위한 메서드
+    public void DisableTime()  // 호출을 위한 메서드
     {
         Invoke("StartDisable", 5.0f);        
     }
@@ -39,33 +26,34 @@ public class EnemyOnDisable : MonoBehaviour
         if (gameObject.TryGetComponent<SkeletonDamage>(out var skeletonDamage))
         {
             skeletonDamage.IsDie = false;
+            skeletonDamage.hpInit = skeletonDamage.maxHp;
             skeletonDamage.capCol.enabled = true;
             skeletonDamage.rb.isKinematic = false;
             skeletonDamage.rb.Sleep();
             skeletonDamage.rb.velocity = Vector3.zero;
-            skeletonDamage.gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
+            skeletonDamage.gameObject.SetActive(false);
         }
 
-        if (gameObject.TryGetComponent<MonsterDamage>(out var monsterDamage))
+        else if (gameObject.TryGetComponent<MonsterDamage>(out var monsterDamage))
         {
             monsterDamage.IsDie = false;
+            monsterDamage.hpInit = monsterDamage.maxHp;
             monsterDamage.capCol.enabled = true;
             monsterDamage.rb.isKinematic = false;
             monsterDamage.rb.Sleep();
             monsterDamage.rb.velocity = Vector3.zero;
-            monsterDamage.gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
+            monsterDamage.gameObject.SetActive(false);
         }
     
-        if (gameObject.TryGetComponent<ZombieDamage>(out var zombieDamage))
+        else if (gameObject.TryGetComponent<ZombieDamage>(out var zombieDamage))
         {
             zombieDamage.IsDie = false;
+            zombieDamage.hpInit = zombieDamage.maxHp;
             zombieDamage.capCol.enabled = true;
             zombieDamage.rb.isKinematic = false;
             zombieDamage.rb.Sleep();
             zombieDamage.rb.velocity = Vector3.zero;
-            zombieDamage.gameObject.transform.position = GameObject.Find("EnemyGroup").transform.position;
+            zombieDamage.gameObject.SetActive(false);
         }
-
-        gameObject.SetActive(false);
     }
 }

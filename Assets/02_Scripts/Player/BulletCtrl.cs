@@ -10,6 +10,8 @@ public class BulletCtrl : MonoBehaviour
     public int damage = 20;
     void OnEnable()
     {
+        trail = GetComponent<TrailRenderer>();
+        trail.material = Resources.Load<Material>("Material_M");
         rb.AddForce(transform.forward * Speed); //Local 좌표로 Speed만큼 나감.
                                                 //Vector3.forward = Global 좌표. vector 3차원좌표
         Invoke("Disable", 3.0f);                //3초 후에 OnDisable 함수를 호출한다.
@@ -17,7 +19,7 @@ public class BulletCtrl : MonoBehaviour
     }
     void Disable()
     {
-        //trail.Clear();
+        trail.Clear();
         rb.Sleep();
         rb.velocity = Vector3.zero;
         gameObject.SetActive(false);

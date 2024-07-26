@@ -33,6 +33,10 @@ public class MonsterDamage : MonoBehaviour
         hpInit = maxHp;
         hpBar.color = Color.green;
     }
+    void OnEnable()
+    {
+        UIUpdate();
+    }
     public void BoxColEnable()
     {
         boxCol.enabled = true;
@@ -95,7 +99,7 @@ public class MonsterDamage : MonoBehaviour
         rb.isKinematic = true;
         IsDie = true;
         //Destroy(gameObject, 5.0f);
-        GetComponent<EnemyOnDisable>().Disable();
+        GetComponent<EnemyOnDisable>().DisableTime();
         GameManager.Instance.KillScore(1);
     }
     void Update()
