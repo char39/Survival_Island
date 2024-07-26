@@ -98,7 +98,17 @@ public class MonsterDamage : MonoBehaviour
         capCol.enabled = false;
         rb.isKinematic = true;
         IsDie = true;
-        //Destroy(gameObject, 5.0f);
+        GetComponent<EnemyOnDisable>().DisableTime();
+        GameManager.Instance.KillScore(1);
+    }
+    public void ExplosionDie()
+    {
+        hpInit = 0;
+        UIUpdate();
+        animator.SetTrigger(dieStr);
+        capCol.enabled = false;     //콜라이더[충돌감지 기능] 비활성화
+        rb.isKinematic = true;      //물리기능 true일때 일시 제거
+        IsDie = true;
         GetComponent<EnemyOnDisable>().DisableTime();
         GameManager.Instance.KillScore(1);
     }

@@ -26,6 +26,11 @@ public class MonsterCtrl : MonoBehaviour
         damage = GetComponent<MonsterDamage>();
     }
 
+    void OnEnable()
+    {
+        FpsDamage.PlayerDie_Event += PlayerDeath_Dance;
+    }
+
     void Update()
     {
         if (damage.IsDie || Player.GetComponent<FpsDamage>().isPlayerDie)
@@ -59,5 +64,9 @@ public class MonsterCtrl : MonoBehaviour
     public void PlayerDeath()
     {
         GetComponent<Animator>().SetTrigger("PlayerDie");
+    }
+    public void PlayerDeath_Dance()
+    {
+        GetComponent<Animator>().SetTrigger("PlayerDie_Dance");
     }
 }

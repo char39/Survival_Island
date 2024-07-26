@@ -33,6 +33,11 @@ public class ZombieCtrl : MonoBehaviour
         damage = GetComponent<ZombieDamage>();
     }
 
+    void OnEnable()
+    {
+        FpsDamage.PlayerDie_Event += PlayerDeath_Dance;
+    }
+
     void Update()
     {
         if (damage.IsDie || Player.GetComponent<FpsDamage>().isPlayerDie)
@@ -70,5 +75,9 @@ public class ZombieCtrl : MonoBehaviour
     public void PlayerDeath()
     {
         GetComponent<Animator>().SetTrigger("PlayerDie");
+    }
+    public void PlayerDeath_Dance()
+    {
+        GetComponent<Animator>().SetTrigger("PlayerDie_Dance");
     }
 }

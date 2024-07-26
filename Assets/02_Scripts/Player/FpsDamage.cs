@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DataInfo;
 
 public class FpsDamage : MonoBehaviour
 {
@@ -14,14 +15,33 @@ public class FpsDamage : MonoBehaviour
     public string attackTag = "ATTACK_HITBOX";
     public bool isPlayerDie = false;
     public GameObject ScreenImage;
+
+    public delegate void PlayerDie_Dele();
+    public static event PlayerDie_Dele PlayerDie_Event;
+
     void Start()
     {
         //ScreenImage = GameObject.Find("Image_Screen").gameObject; //게임오브젝트가 체크 해제되어있으면 못찾음
         ScreenImage = GameObject.Find("Canvas_UI").transform.GetChild(5).gameObject;
+        maxHp = (int)GameManager.Instance.gameData.hp;
         hp = maxHp;
         HpBar.color = Color.green;
         HpInfo();
+        UpdateSetup();
     }
+
+    void OnEnable()
+    {
+        GameManager.OnItemChange += UpdateSetup;    // 함수를 이벤트로 등록
+    }
+
+    void UpdateSetup()
+    {
+        maxHp = (int)GameManager.Instance.gameData.hp;  // 게임매니저에서 최대hp가 바뀌면 실시간으로 최대hp를 변경해줌
+        hp += (int)GameManager.Instance.gameData.hp - hp;   // 아이템으로 인한 최대hp에서 현재hp를 뺀 ?
+        HpInfo();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(attackTag))
@@ -29,7 +49,7 @@ public class FpsDamage : MonoBehaviour
             hp -= 22;
             HpInfo();
             if (hp <= 0)
-                PlayerDie();
+                PlayerDie_Ev();//PlayerDie();
         }
     }
     private void HpInfo()
@@ -60,6 +80,15 @@ public class FpsDamage : MonoBehaviour
         Invoke("MoveNextScene", 3.0f);
         //3초 후 MoveNextScene 함수 호출
     }
+    
+    public void PlayerDie_Ev()
+    {
+        ScreenImage.SetActive(true);    //해당 오브젝트 활성화
+        isPlayerDie = true;
+        PlayerDie_Event();
+        Invoke("MoveNextScene", 3.0f);
+    }
+
     void MoveNextScene()
     {
         SceneManager.LoadScene("EndScene");

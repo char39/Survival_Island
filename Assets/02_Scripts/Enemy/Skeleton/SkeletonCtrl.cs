@@ -32,12 +32,7 @@ public class SkeletonCtrl : MonoBehaviour
 
     void OnEnable()
     {
-        agent = this.gameObject.GetComponent<NavMeshAgent>();
-        thisSkeleton = transform;
-        player = GameObject.FindWithTag(findTag).transform;
-        animator = GetComponent<Animator>();
-        damage = GetComponent<SkeletonDamage>();
-        audioSource = GetComponent<AudioSource>();
+        FpsDamage.PlayerDie_Event += PlayerDeath_Dance;
     }
 
     void Update()
@@ -76,5 +71,9 @@ public class SkeletonCtrl : MonoBehaviour
     public void PlayerDeath()
     {
         GetComponent<Animator>().SetTrigger("PlayerDie");
+    }
+    public void PlayerDeath_Dance()
+    {
+        GetComponent<Animator>().SetTrigger("PlayerDie_Dance");
     }
 }

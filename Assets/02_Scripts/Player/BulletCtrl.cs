@@ -30,5 +30,9 @@ public class BulletCtrl : MonoBehaviour
         rb.velocity = Vector3.zero;
         gameObject.SetActive(false);
     }
+    void OnCollisionEnter()
+    {
+        Invoke("Disable", 0.01f);
+    }
 
 }

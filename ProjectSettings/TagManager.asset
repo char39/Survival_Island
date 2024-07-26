@@ -10,6 +10,7 @@ TagManager:
   - SKELETON
   - ATTACK_HITBOX
   - ENEMY
+  - Barrel
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - SKELETON
   - ZOMBIE
   - MONSTER
-  - 
+  - Barrel
   - 
   - 
   - 
