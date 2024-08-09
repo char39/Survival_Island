@@ -35,7 +35,7 @@ public class BarrelCtrl : MonoBehaviour
         if (col.gameObject.CompareTag(bulletTag))
         {
             hitCount++;
-            if (hitCount == 5)
+            if (hitCount == 5 && !isExplo)
             {
                 ExplosionBarrel();
                 //StartCoroutine(GameManager.Instance.CameraShake());
@@ -46,6 +46,7 @@ public class BarrelCtrl : MonoBehaviour
 
     private void ExplosionBarrel()
     {
+        isExplo = true;
         GameObject eff = Instantiate(exploEffect, transform.position, Quaternion.identity);
         Destroy(eff, 2.0f);
 
