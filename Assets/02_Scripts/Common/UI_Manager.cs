@@ -22,8 +22,8 @@ public class UI_Manager : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene("PlayScene");
-        SceneManager.LoadScene("PlayerScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("PlayScene_Backup");
+        //SceneManager.LoadScene("PlayerScene", LoadSceneMode.Additive);
     }
     public void QuitGame()
     {
